@@ -1,30 +1,24 @@
-SockJS test server
+OpenShift SockJS test server
 ==================
 
-In order to test sockjs server implementation the server needs to
-provide a standarized sockjs endpoint that will can used by various
-sockjs-related tests. For example by QUnit or
-[Sockjs-protocol](https://github.com/sockjs/sockjs-protocol) tests.
+To create this application, run the following command:
 
-This small code does exactly that - runs a simple server that supports
-the following SockJS services:
+    rhc app-create sockjs nodejs --from-code https://github.com/matthicksj/sockjs.git
 
- * `/echo`
- * `/disabled_websocket_echo`
- * `/cookie_needed_echo`
- * `/close`
- * `/ticker`
- * `/amplify`
- * `/broadcast`
+Next, clone the modified client harness that will just test the
+websocket protocol:
 
-If you just want to quickly run it:
+    git clone https://github.com/matthicksj/sockjs-client.git
 
-    npm install
-    node server.js
+Change the test harness to use your domain and application name:
 
+    export DOMAIN="mydomain"
+    sed -ie "s/REPLACEDOMAIN/$DOMAIN" sockjs-client/test/config.js
 
-If you want to run do development it's recommended to run `make
-test_server` from the top `sockjs-node` directory:
+Now, start the test harness
 
-    cd ../..
-    make test_server
+    make test
+
+Lastly, open up a browser and run the qunit tests:
+
+    http://localhost:8080/tests-qunit.html
