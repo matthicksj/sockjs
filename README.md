@@ -15,8 +15,9 @@ Change the test harness to use your domain and application name:
     export DOMAIN="your_domain_here"
     sed -ie "s/REPLACEDOMAIN/$DOMAIN/" sockjs-client/tests/config.js
 
-Now, start the test harness
+Now, start the test harness (make sure you have npm installed):
 
+    npm install
     make test
 
 Lastly, open up a browser and run the qunit tests:
