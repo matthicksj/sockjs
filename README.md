@@ -12,8 +12,8 @@ websocket protocol:
 
 Change the test harness to use your domain and application name:
 
-    export DOMAIN="mydomain"
-    sed -ie "s/REPLACEDOMAIN/$DOMAIN" sockjs-client/test/config.js
+    export DOMAIN="your_domain_here"
+    sed -ie "s/REPLACEDOMAIN/$DOMAIN/" sockjs-client/tests/config.js
 
 Now, start the test harness
 
